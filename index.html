@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <title>Connect-Four</title>
+</head>
+<body>
+
+    <!-- 7x6 배열 만들기 -->
+    <div class="container">
+        <div class="board">
+            <div class="row">
+                <div class="select col0" data-col="0">Select!!</div>
+                <div class="select col1" data-col="1">Select!!</div>
+                <div class="select col2" data-col="2">Select!!</div>
+                <div class="select col3" data-col="3">Select!!</div>
+                <div class="select col4" data-col="4">Select!!</div>
+                <div class="select col5" data-col="5">Select!!</div>
+                <div class="select col6" data-col="6">Select!!</div>
+            </div>
+            <div class="row" id="row0">
+                <div class="col col0" data-status="none"></div>
+                <div class="col col1" data-status="none"></div>
+                <div class="col col2" data-status="none"></div>
+                <div class="col col3" data-status="none"></div>
+                <div class="col col4" data-status="none"></div>
+                <div class="col col5" data-status="none"></div>
+                <div class="col col6" data-status="none"></div>
+            </div>
+            <div class="row" id="row1">
+                <div class="col col0" data-status="none"></div>
+                <div class="col col1" data-status="none"></div>
+                <div class="col col2" data-status="none"></div>
+                <div class="col col3" data-status="none"></div>
+                <div class="col col4" data-status="none"></div>
+                <div class="col col5" data-status="none"></div>
+                <div class="col col6" data-status="none"></div>
+            </div>
+            <div class="row" id="row2">
+                <div class="col col0" data-status="none"></div>
+                <div class="col col1" data-status="none"></div>
+                <div class="col col2" data-status="none"></div>
+                <div class="col col3" data-status="none"></div>
+                <div class="col col4" data-status="none"></div>
+                <div class="col col5" data-status="none"></div>
+                <div class="col col6" data-status="none"></div>
+            </div>
+            <div class="row" id="row3">
+                <div class="col col0" data-status="none"></div>
+                <div class="col col1" data-status="none"></div>
+                <div class="col col2" data-status="none"></div>
+                <div class="col col3" data-status="none"></div>
+                <div class="col col4" data-status="none"></div>
+                <div class="col col5" data-status="none"></div>
+                <div class="col col6" data-status="none"></div>
+            </div>
+            <div class="row" id="row4">
+                <div class="col col0" data-status="none"></div>
+                <div class="col col1" data-status="none"></div>
+                <div class="col col2" data-status="none"></div>
+                <div class="col col3" data-status="none"></div>
+                <div class="col col4" data-status="none"></div>
+                <div class="col col5" data-status="none"></div>
+                <div class="col col6" data-status="none"></div>
+            </div>
+            <div class="row" id="row5">
+                <div class="col col0" data-status="none"></div>
+                <div class="col col1" data-status="none"></div>
+                <div class="col col2" data-status="none"></div>
+                <div class="col col3" data-status="none"></div>
+                <div class="col col4" data-status="none"></div>
+                <div class="col col5" data-status="none"></div>
+                <div class="col col6" data-status="none"></div>
+            </div>
+        </div> <!-- game board end-->
+        <p class="status">1P Turn! (RED)</p>
+    </div>
+
+    <script>
+        let gameBoard = new Array();
+        let player = 1;
+
+        $(document).ready(function() {
+            
+            for (let i = 0 ; i < 6 ; i++) {
+                gameBoard.push($('#row' + i).children());
+            }
+
+            $('.select').on('click', function(e) {
+
+                let colNum = $(this).data('col');
+                console.log('columnNumber : ', $(this).data('col'));
+
+                for(let i = 5 ; i >= 0 ; i--) {
+                    // console.log(gameBoard[i][colNum].dataset.status);
+                    if (gameBoard[i][colNum].dataset.status === 'none') {
+                        if(player === 1) {
+                            gameBoard[i][colNum].style.background = 'red';
+                            gameBoard[i][colNum].dataset.status = 'red';
+                            player = 2;
+                            $('.status').text('2P Turn! (Yellow)');
+                        } else if(player === 2) {
+                            gameBoard[i][colNum].style.background = 'yellow';
+                            gameBoard[i][colNum].dataset.status = 'yellow';
+                            player = 1;
+                            $('.status').text('1P Turn! (Red)');
+                        }
+
+                        // TODO: 승리조건 체크해서 승리 하기
+
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

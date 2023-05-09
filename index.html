@@ -84,6 +84,22 @@
         let gameBoard = new Array();
         let player = 1;
 
+        function checkBingo() {
+            /* 
+                승리조건을 체크 하는 함수입니다.
+                가로, 세로, 대각으로 4개의 판이 동일한 색상일 경우
+                해당 색상의 승리입니다.
+            */
+
+            // 1. 가로체크
+            
+            // 2. 세로체크
+
+            // 3. 대각선 체크
+
+            return;
+        }
+        
         $(document).ready(function() {
             
             for (let i = 0 ; i < 6 ; i++) {
@@ -112,13 +128,17 @@
 
                         // TODO: 승리조건 체크해서 승리 하기
 
+
                         break;
                     } else {
                         continue;
                     }
                 }
             });
-        });
+
+
+
+        }); // jQuery END!
     </script>
 </body>
 </html>
